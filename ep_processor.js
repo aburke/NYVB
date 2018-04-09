@@ -43,7 +43,7 @@ module.exports = {
 }
 
 /*
-module.exports.txn_range('01022018', '02032018')
+module.exports.violators()
                 .then(function(response){
                     console.log(response)
                 })*/

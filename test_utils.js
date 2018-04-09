@@ -89,8 +89,8 @@ const violators_dtls = {
     ],
 
     exp_val : [
-        {userId : 1, roleId: 1},
-        {userId : 2, roleId: 2},
+        {userId : 1, too_many_txns: false, has_oversized_txns: true},
+        {userId : 2, too_many_txns: true, has_oversized_txns: false}
     ]
 }
 

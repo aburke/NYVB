@@ -22,11 +22,14 @@ module.exports = {
         let user_txns = transactions.filter(x => x.userId == user.userId)
         let user_role = roles.filter(x => x.roleId == user.roleId)[0]
         let oversized_txns = user_txns.filter(x => user_role.maxAmount < Math.abs(x.transAmt))
-        return oversized_txns.length > 0 || user_txns.length > user_role.maxTxnCount
+
+        return {userId : user.userId,
+                too_many_txns : user_txns.length > user_role.maxTxnCount, 
+                has_oversized_txns : oversized_txns.length > 0}
     },
 
     pull_violators : function(transactions, roles, users){
         let partial_func = module.exports.user_violation_check.bind(null, transactions, roles)
-        return users.filter(partial_func)
+        return users.map(partial_func).filter(x => x.too_many_txns || x.has_oversized_txns)
     }
 }

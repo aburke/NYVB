@@ -1,0 +1,24 @@
+{
+  "name": "nyvb",
+  "version": "1.0.0",
+  "description": "NYVB Code Challenge",
+  "main": "server.js",
+  "scripts": {
+    "test": "node test_utils.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aburke/NYVB.git"
+  },
+  "author": "Alanza Burke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aburke/NYVB/issues"
+  },
+  "homepage": "https://github.com/aburke/NYVB#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3"
+  }
+}
