@@ -26,14 +26,9 @@ const all_user_txn_dtls = {
     ],
 
     exp_val : [
-        {1 : [
-            {userId : 1, transAmt : 23},
-            {userId : 1, transAmt : 44}
-        ]},
-        {2 : [
-            {userId : 2, transAmt : 11}
-        ]},
-        {3 : []}
+        {user : {userId : 1}, txn : [{userId : 1, transAmt : 23}, {userId : 1, transAmt : 44}]},
+        {user : {userId : 2}, txn : [{userId : 2, transAmt : 11}]},
+        {user : {userId : 3}, txn: []}
     ]
 } 
 
@@ -50,18 +45,15 @@ const user_txn_dtls = {
         {userId : 1, transAmt : 44}
     ],
 
-    userId : 1,
-
+    user : {userId : 1},
+        
     exp_val : 
-        {1 : [
-            {userId : 1, transAmt : 23},
-            {userId : 1, transAmt : 44}
-        ]}
+        {user : {userId : 1}, txn : [{userId : 1, transAmt : 23}, {userId : 1, transAmt : 44}]}
     
 } 
 
 const test_user_txn = function(){
-    actual_value = utils.pull_user_txns(user_txn_dtls.txns, user_txn_dtls.userId)
+    actual_value = utils.pull_user_txns(user_txn_dtls.txns, user_txn_dtls.user)
     //console.log(actual_value)
     check_test("test_user_txn", compare_obj(actual_value, user_txn_dtls.exp_val))
 }

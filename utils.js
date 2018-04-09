@@ -1,15 +1,17 @@
 
 module.exports = {
 
-    pull_user_txns : function(transactions, userId){
+    pull_user_txns : function(transactions, user){
         let user_transactions = {}
-        user_transactions[userId] = transactions.filter(x => x.userId == userId)
+        user_transactions['user'] = user
+        user_transactions['txn'] = transactions.filter(x => x.userId == user.userId)
+
         return user_transactions
     },
 
     pull_all_user_txns : function(transactions, users){
         let partial_func = module.exports.pull_user_txns.bind(null, transactions)
-        return users.map(x => x.userId).map(partial_func)
+        return users.map(partial_func)
     },
 
     pull_txns_by_date : function(transactions, start_date, end_date){

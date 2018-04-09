@@ -15,11 +15,14 @@ module.exports = {
     },
 
     user_txns : function(userId){
-        return endpoints
-                .transactions()
-                .then(function(txns){
-                    return Promise.resolve(utils.pull_user_txns(txns.data.data, userId))
-                })
+        return axios.all([
+            endpoints.users(),
+            endpoints.transactions()
+        ])
+        .then(axios.spread(function (users, txns){
+            let user = users.data.data.filter(x => x.userId == userId)[0]
+            return Promise.resolve(utils.pull_user_txns(txns.data.data, user))
+        }))
     },
 
     txn_range : function(startDate, endDate){
